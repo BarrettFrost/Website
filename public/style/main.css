@@ -1,0 +1,83 @@
+body{background-color:powderblue;}
+h1{font-size:40px;
+  text-align:center;
+  font-family:Arial;}
+html { overflow-y: scroll ;}
+
+button {
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+ }
+
+#intro {
+  margin-left: 200px;
+}
+#column{
+    position: fixed;
+    width: 200px;
+    overflow: hidden;
+}
+#box{
+  width: 1200px;
+  height: 620px;
+  border: 2px solid black;
+  position: relative;
+  left:200px;
+}
+#measurement{
+    width: 1000px;
+    border: 2px solid black;
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+}
+#vLine{
+    border-left: 3px solid black;
+    height: 15px;
+    position: absolute;
+    bottom:23px;
+    left:100px;
+}
+#vLine2{
+    border-left: 3px solid black;
+    height: 15px;
+    position: absolute;
+    bottom:23px;
+    left:350px;
+}
+#vLine3{
+    border-left: 3px solid black;
+    height: 15px;
+    position: absolute;
+    bottom:23px;
+    left:600px;
+}
+#vLine4{
+    border-left: 3px solid black;
+    height: 15px;
+    position: absolute;
+    bottom:23px;
+    left:850px;
+}
+#vLine5{
+    border-left: 3px solid black;
+    height: 15px;
+    position: absolute;
+    bottom:23px;
+    left:1100px;
+}
+#image_human{
+    position: absolute;
+    bottom:30px;
+    left:1075px;
+}
+.image{
+    position: absolute;
+    left:100px;
+}
+#unit{
+    position: absolute;
+    bottom: -10px;
+    left:200px;
+}
