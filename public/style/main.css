@@ -2,10 +2,17 @@ body{background-color:powderblue;}
 h1{font-size:40px;
   text-align:center;
   font-family:Arial;}
+
 html { overflow-y: scroll ;}
 
+h2{
+    position: relative;
+    left:200px;
+    font-family:Arial;
+}
+
 button {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   margin-left: 20px;
   margin-right: 20px;
  }
@@ -15,6 +22,7 @@ button {
 }
 #column{
     position: fixed;
+    bottom: 50px;
     width: 200px;
     overflow: hidden;
 }
@@ -80,4 +88,7 @@ button {
     position: absolute;
     bottom: -10px;
     left:200px;
+}
+#details{
+    margin-left: 200px;
 }
