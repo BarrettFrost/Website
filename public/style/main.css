@@ -22,7 +22,7 @@ button {
 }
 #column{
     position: fixed;
-    bottom: 50px;
+    bottom: 25px;
     width: 200px;
     overflow: hidden;
 }
