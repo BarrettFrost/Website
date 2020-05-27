@@ -1,4 +1,5 @@
 "use strict";
+
   
   var animalData;
   var classURL;
@@ -8,24 +9,38 @@
     sizeImage();
     makebuttons();
   });
-  dropBoxEvent();
+  dropBoxEventButton();
   function checkAnimals(){
     console.log(animalData);
   }
   
-  function dropBoxEvent(){
+  function dropBoxEventButton(){
     var submit = document.getElementById("dropBox");
+    console.log(submit.value)
     submit.addEventListener("click", function(){
-      classURL = "api/animals/" + document.getElementById("dropBox").value;
+      classURL = "api/animals/" + submit.value;
+      if(submit.value === "All"){
+        $.getJSON("api/animals", function(json){
+          document.getElementById("column").innerHTML = "";
+          animalData = json;
+          checkAnimals();
+          sizeImage();
+          makebuttons();
+        })
+        location.reload;
+      }
+      else{
+        $.getJSON(classURL, function(json){
+          document.getElementById("column").innerHTML = "";
+          console.log(classURL);
+          animalData = json;
+          checkAnimals();
+          sizeImage();
+          makebuttons();
+        })
+        location.reload;
+      }
     })
-    console.log("hello"+classURL);
-    $.getJSON(classURL, function(json){
-      animalData = json;
-      checkAnimals();
-      sizeImage();
-      makebuttons();
-    })
-
   }
 
  function makebuttons(){
