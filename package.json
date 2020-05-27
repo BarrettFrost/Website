@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
-    "server": "^1.0.22",
-    "sqlite3": "^4.1.1",
+    "jquery": "^3.5.1",
+    "server": "^1.0.27",
+    "sqlite3": "^4.2.0",
     "vue": "^2.6.11"
   }
 }
