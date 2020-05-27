@@ -61,7 +61,17 @@
    
    function displayDetails(i){
     var para = document.createElement("P");             
-    para.innerText = "extinct : " + animalData.data[i].extinct;
+    para.innerHTML = "name : " + animalData.data[i].name;
+    para.innerHTML += "<br/>";
+    para.innerHTML += "extinct : " + animalData.data[i].extinct;
+    para.innerHTML += "<br/>";
+    para.innerHTML += "length : " + animalData.data[i].length + " m";
+    para.innerHTML += "<br/>";
+    para.innerHTML += "mass : " + animalData.data[i].weight;
+    para.innerHTML += "<br/>";
+    para.innerHTML += "class : " + animalData.data[i].class;
+    para.innerHTML += "<br/>";
+    para.innerHTML += "Title : " + animalData.data[i].desc;
     para.id = animalData.data[i].id;           
     document.getElementById("details").append(para);
    }
@@ -71,4 +81,10 @@
         window.location = window.location + '#loaded';
         window.location.reload();
     }
-}
+   }
+   window.onload = function() {
+    if (!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+   }
