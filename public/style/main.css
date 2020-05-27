@@ -92,3 +92,11 @@ button {
 #details{
     margin-left: 200px;
 }
+#dropBox{
+    position: relative;
+    bottom: 110px;
+}
+#classSubmit{
+    position: relative;
+    bottom: 110px;
+}
