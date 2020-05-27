@@ -1,16 +1,33 @@
 "use strict";
   
   var animalData;
+  var classURL;
   $.getJSON('api/animals', function(json){
     animalData = json;
     checkAnimals();
     sizeImage();
     makebuttons();
   });
+  dropBoxEvent();
   function checkAnimals(){
     console.log(animalData);
   }
   
+  function dropBoxEvent(){
+    var submit = document.getElementById("dropBox");
+    submit.addEventListener("click", function(){
+      classURL = "api/animals/" + document.getElementById("dropBox").value;
+    })
+    console.log("hello"+classURL);
+    $.getJSON(classURL, function(json){
+      animalData = json;
+      checkAnimals();
+      sizeImage();
+      makebuttons();
+    })
+
+  }
+
  function makebuttons(){
     for(var i = 0; i < animalData.data.length; i++){
       var button = document.createElement('button');
