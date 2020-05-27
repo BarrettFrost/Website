@@ -24,3 +24,18 @@ app.get("/api/animals", (req, res, next) => {
         })
       });
 });
+
+app.get("/api/animals/:class", (req, res, next) => {
+  const classToFind = req.params.class;
+  var sql = 'select * from animals where class = $class'
+  var params = {$class: classToFind}
+  db.all(sql, params, (err, rows) => {
+      if (err) {
+        res.status(400).json({"error":err.message});
+        return;
+      }
+      res.json({
+          "data":rows
+      })
+    });
+});
