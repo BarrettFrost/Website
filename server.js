@@ -13,7 +13,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 app.get("/api/animals", (req, res, next) => {
-    var sql = "select * from animals"
+    var sql = "select * from animals ORDER BY length DESC"
     var params = [];
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -28,7 +28,7 @@ app.get("/api/animals", (req, res, next) => {
 
 app.get("/api/animals/:class", (req, res, next) => {
   const classToFind = req.params.class;
-  var sql = 'select * from animals where class = $class'
+  var sql = 'select * from animals where class = $class ORDER BY length DESC'
   var params = {$class: classToFind}
   var letters = /^[a-zA-Z]+$/;
   if(!classToFind.match(letters)){
