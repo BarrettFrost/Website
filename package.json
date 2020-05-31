@@ -12,6 +12,6 @@
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "server": "^1.0.27",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "https://github.com/mapbox/node-sqlite3/tarball/master"
   }
 }
