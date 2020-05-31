@@ -23,8 +23,10 @@ JavaScript: A
 
 The client side code is written in plain javascript without a framework. The notable function getting to
 data from the database via JSON. I have a good understanding of manipulating HTML using
-getElementByID, getElementsByClassName etc. There is a high degree of dynamism in the site. Many elements have click or mouseover functionality,
-and have their styling adjusted in use. A notable example is the graph box that adjusts the positioning of the ruler and reference mannequin
+getElementByID, getElementsByClassName etc. There is a high degree of dynamism in the site. Many elements have click or mouseover 
+functionality,
+and have their styling adjusted in use. A notable example is the graph box that adjusts the positioning of the ruler and reference 
+mannequin
 each time the images are added and removed (checkBoxElementsPosition()). Javascript was used to alter the dimensions of the
 the placing and sizing of the PNGs since all the PNG to fit a dynamic window resolution. No classes were used.
 
