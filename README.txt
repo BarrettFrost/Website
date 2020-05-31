@@ -48,7 +48,7 @@ Server: B
 The server implemented using the express.js framework. When the app runs the server listens on port 8080. The server uses https with
 certificates to secure connections from a web server to a browser. The databases is connected to the server and when the server recieve
 a request middleware is used to query the sql database and then sends back json containing the animal data. URL validation has been
-implemented using middleware, so when // is used in the URL and error will be thrown. Also when a user specifys a class, the class
+implemented using middleware, so when // is used in the URL and error will be thrown so you can't jump out the public folder. Also when a user specifys a class, the class
 section of the URL has to contain only alphabet characters. 
 
 
