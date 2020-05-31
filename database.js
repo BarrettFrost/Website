@@ -38,7 +38,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 db.run(insert, ["Shastasaurus", 22, "./png/shastasaurus.png", "201.3 million years ago", "68 tonnes", "Largest carnivorous ever", "reptile" ])
                 db.run(insert, ["Quetzalcoatlus", 10, "./png/quetzalcoatlus.png", "66 million years ago", "250 kg", "Largest flying animal ever", "reptile" ])
                 db.run(insert, ["elephant bird", 3, "./png/elephant bird.png", "1000 CE", "860 kg", "Largest bird ever", "bird" ])
-                db.run(insert, ["Colossal squid", 14, "./png/Colossalsquid.png", "present", "500 kg", "Largest invertabrate ever", "Cephalopoda" ])
+                db.run(insert, ["Colossal squid", 14, "./png/Colossalsquid.png", "present", "500 kg", "Largest invertabrate ever", "cephalopoda" ])
             }
         });  
     }
