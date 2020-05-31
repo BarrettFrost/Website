@@ -2,13 +2,27 @@
 
 var animalData;
 var classURL;
+
+window.onload = function(){
+  if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+  }
+}
+
 $.getJSON('api/animals', function(json){
   animalData = json;
-  checkAnimals();
-  sizeImage();
-  makebuttons();
-  displayDetails(null);
+  dropBoxEventButton();
+  resetSiteElements();
 });
+
+function resetSiteElements(){
+  checkAnimals();
+  placeImage();
+  makeButtons();
+  displayDetails(null);
+  checkBoxElementsPosition();
+}
 
 function checkAnimals(){
   console.log(animalData);
@@ -17,15 +31,16 @@ function checkAnimals(){
 function dropBoxEventButton(){
   var submit = document.getElementById("dropBox");
   console.log(submit.value)
-  submit.addEventListener("click", function(){
+  submit.onchange = function(){
+    /*clear existing images, or 'details' will break*/
+    clearImages();
+
     classURL = "api/animals/" + submit.value;
     if(submit.value === "All"){
       $.getJSON("api/animals", function(json){
         document.getElementById("column").innerHTML = "";
         animalData = json;
-        checkAnimals();
-        sizeImage();
-        makebuttons();
+        resetSiteElements();
       })
       location.reload;
     }
@@ -34,38 +49,37 @@ function dropBoxEventButton(){
         document.getElementById("column").innerHTML = "";
         console.log(classURL);
         animalData = json;
-        checkAnimals();
-        sizeImage();
-        makebuttons();
+        resetSiteElements();
       })
       location.reload;
     }
-  })
+  }
 }
 
 /*Animal selection buttons*/
-function makebuttons(){
+function makeButtons(){
   for(var i = 0; i < animalData.data.length; i++){
     var button = document.createElement('button');
+    button.setAttribute("class", "btn btn-light");
+
     button.innerHTML = animalData.data[i].name;
     document.getElementById('column').appendChild(button);
     button.addEventListener("click", clickButton.bind(this, i));
   }
 }
 
- function clickButton(index){
-   var png = document.getElementById(animalData.data[index].name);
-   if(png.style.display === "none"){
-      png.style.display = "block";
-      /*displayDetails(index);*/
+function clickButton(index){
+  var png = document.getElementById(animalData.data[index].name);
+  if(png.style.display === "none"){
+    png.style.display = "block";
   }
   else{
     png.style.display = "none";
-    /*var element = document.getElementById(animalData.data[index].id).remove();*/
   }
+  checkBoxElementsPosition();
 }
 
- function sizeImage(){
+ function placeImage(){
   var height;
   console.log(animalData.data.length);
   for(var i = 0; i < animalData.data.length; i++){
@@ -76,34 +90,45 @@ function makebuttons(){
 
       /*attributes*/
       image.setAttribute("src", animalData.data[i].image);
-      image.setAttribute("class", "image");
+      image.setAttribute("class", "images-single");
       image.setAttribute("id", animalData.data[i].name);
-      image.setAttribute("width", (animalData.data[i].length*window.innerWidth*0.017));
+      image.setAttribute("width", (animalData.data[i].length*document.getElementById("box").offsetWidth*0.0225));
 
       /*mouseover to see details*/
       image.onmouseover = function() {displayDetails(this.id)};
       image.onmouseout = function() {displayDetails(null)};
 
-      document.getElementById('box').appendChild(image);
-      /*below does nothing ^^"*/
-      /*height = placeImage(animalData.data[i].length, animalData.data[i].name, i);*/
+      document.getElementById('images').appendChild(image);
       console.log(height);
       image.style.marginLeft="5%";
   }
 }
-/*function placeImage(width, name, i){
-   console.log(name);
-   var png = document.getElementById(name);
-   var height = (width / png.naturalWidth)* png.naturalHeight;
-   console.log(png.naturalWidth + " " +png.naturalHeight);
-   return 580 - height;
-}*/
+
+function checkBoxElementsPosition(){
+  /*ensures that the total height of elements in box are never less than its minHeight*/
+  /*this is a roundabout way to keep "measurement" and "images" at the bottom of the box*/
+  var box = document.getElementById("box");
+  var images = document.getElementById("images");
+  var human = document.getElementById("human");
+  var measurement = document.getElementById("measurement");
+
+  console.log((images.offsetHeight + human.offsetHeight +
+    measurement.offsetHeight));
+
+  if(400 > (images.offsetHeight + human.offsetHeight +
+    measurement.offsetHeight)){
+    images.style.marginTop = (400 - images.offsetHeight - human.offsetHeight -
+      measurement.offsetHeight).toString() + "px";
+  }else{
+    images.style.marginTop = "0px";
+  }
+}
 
 function displayDetails(name){
   var para = document.getElementById("details");
 
   if(name === null){
-    para.innerHTML = "Hover over an animal to see its details!";
+    para.innerHTML = "Mouse over/click on an animal to see its details!";
   }else{
     for(var i = 0; i < animalData.data.length; i++){
       if(!name.localeCompare(animalData.data[i].name)){
@@ -123,9 +148,9 @@ function displayDetails(name){
   }
 }
 
-window.onload = function(){
-  if (!window.location.hash) {
-      window.location = window.location + '#loaded';
-      window.location.reload();
+function clearImages(){
+  var images = document.getElementsByClassName('images-single');
+  for(var i = 0; i < images.length; i++){
+    images[i].style.display="none";
   }
 }

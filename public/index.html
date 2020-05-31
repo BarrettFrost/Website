@@ -5,52 +5,65 @@ lang="en-GB" xml:lang="en-GB">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta charset="UTF-8"/>
 <title> Nature's Giants</title>
-<!-- main scripts -->
-<script src="jquery.min.js"></script>
-<script src="main1.js" defer = "defer"></script>
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <!-- css -->
 <link rel="stylesheet" href="style/main.css" type="text/css"/>
+<!-- main scripts -->
+<script src="jquery.min.js"></script>
+<script src="main1.js" defer = "defer"></script>
 </head>
 <body>
 <div class="container-fluid">
   <div class="row">
     <!-- sidebar -->
-    <div class="col-md-2 bg-light">
-      <a href="index.html">
-        <!-- logo navigates to home -->
-        <img src="logo.svg" class="img-fluid" alt="Logo: Nature's Giants">
-      </a>
-      <div class="sb_col">
-        <!-- submit box -->
-        <h4>Submit a creature!</h4>
-        <select name="animal class" id="dropBox">
-          <option value="All">All</option>
-          <option value="reptile">reptile</option>
-          <option value="mammal">mammal</option>
-          <option value="fish">fish</option>
-          <option value="bird">bird</option>
-          <option value="cephalopoda">cephalopoda</option>
-        </select><input type="submit" value="Submit" id = "classSubmit">
-      </div>
-      <div class="sb_col">
-        <!-- animal buttons -->
-        <div id="column"></div>
-      </div>
-      <div class="sb_col">
-        <!-- animal details -->
-        <p id="details"></p>
+    <div class="col-md-2 sidebar">
+      <div class="sidebar-sticky">
+        <a href="index.html">
+          <!-- logo navigates to home -->
+          <img src="logo.svg" class="img-fluid" alt="Logo: Nature's Giants">
+        </a>
+        <div class="sb_col">
+          <!-- submit box -->
+          <h4>Choose an animal class!</h4>
+          <select name="animal class" id="dropBox">
+            <option class"option" value="All">All</option>
+            <option class"option" value="reptile">reptile</option>
+            <option class"option" value="mammal">mammal</option>
+            <option class"option" value="fish">fish</option>
+            <option class"option" value="bird">bird</option>
+            <option class"option" value="cephalopoda">cephalopoda</option>
+          </select>
+        </div>
+        <div class="sb_col">
+          <!-- animal buttons -->
+          <div id="column"></div>
+        </div>
+        <div class="sb_col">
+          <!-- clear all -->
+          <button class="btn btn-dark" id="clear" onclick="clearImages();checkBoxElementsPosition();">Clear all</button>
+        </div>
+        <div class="sb_col details">
+          <!-- animal details -->
+          <div class="details-text">
+            <p id="details"></p>
+          </div>
+        </div>
       </div>
     </div>
     <!-- main page -->
     <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <!-- graph -->
-      <div class="graph">
+      <div class="graph" id="graph">
         <div class="box" id="box">
-          <div class="measurement">
-            <!-- graph ruler -->
+          <div class="images" id="images">
+          </div>
+          <div class="reference" id="reference">
+            <img id="human" src="./png/human.png" alt="human" width = "25"></img>
+          </div>
+          <!-- graph ruler -->
+          <div class="measurement" id="measurement">
             <div class="base">
               <div class="vLine"></div>
               <div class="vLine"></div>
@@ -60,14 +73,13 @@ lang="en-GB" xml:lang="en-GB">
               <div class="unit">
                 <h6>10 m</h6>
               </div>
-              <img id="image_human" src="./png/human.png" alt="human" width = "25"></img>
             </div>
           </div>
         </div>
         <div class="intro">
-         <h6>This website seeks to educate the public on nature's Giants. Use the graph and behold the biggest creatures to have existed on our planet!
+         <h6>Click the buttons and behold the biggest creatures to have existed on our planet!
                 **Ruler is approximate. For extinct creatures, size is a best guess based on fossil findings. </h6>
-         <h7>Note for older browsers: Measurements may be inaccurate due to a lack of support of dynamic scaling to window size for images. Please only refer to the relative size to the mannequin.</h7>
+         <h7>Note for older browsers: Ruler may be inaccurate due to a lack of support of scaling to window size for images. Please only refer to the relative size to the human mannequin.</h7>
         </div>
       </div>
     </div>
