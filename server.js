@@ -3,13 +3,18 @@ const app = express();
 const port = 8080;
 const path = require('path');
 var db = require("./database.js")
+var https = require('https')
+var fs = require('fs')
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+},app).listen(port, () => console.log(`Example app listening on port ${port}!  goto https://localhost:8080`));
 
 
 app.get("/api/animals", (req, res, next) => {
@@ -45,6 +50,21 @@ app.get("/api/animals/:class", (req, res, next) => {
     });
 });
 
+app.get("/api/update/:name/:length", (req, res, next) => {
+  console.log("hello")
+  const nameToFind = req.params.name;
+  const lengthToSet = req.params.length;
+  var sql = 'UPDATE  animals SET length = $length WHERE name = $name'
+  var params = {$name: nameToFind, $length: lengthToSet};
+  var letters = /^[a-zA-Z]+$/;
+  db.all(sql, params, (err, rows) => {
+      if (err) {
+        res.status(400).json({"error":err.message});
+        return;
+      }    
+    });
+});
+
 app.all('/api/animals//', function(req, res) {
   
   throw new Error("Invalid URL")
@@ -57,15 +77,3 @@ app.all('/api//', function(req, res) {
 app.all('//', function(req, res) {
   throw new Error("Invalid URL")
 });
-
-/*app.all('/api//', function(req, res) {
-  throw new Error("Invalid URL")
-});
-
-app.all('/api/animals/*', function(req, res) {
-  throw new Error("Invalid URL")
-});
-
-app.all('*', function(req, res) {
-  throw new Error("Invalid URL")
-});*/
